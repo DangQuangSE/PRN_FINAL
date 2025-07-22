@@ -1,0 +1,6 @@
+@GenderHealthCarePRN_HostAddress = http://localhost:5002
+
+GET {{GenderHealthCarePRN_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
