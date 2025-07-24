@@ -1,9 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenderHealthCareSystem", "GenderHealthCareSystem\GenderHealthCareSystem.csproj", "{7F1FC503-047F-4B3F-946B-1881BE3B9D02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{4A966488-8F8F-4913-A515-B5FE1F99EE42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{F08EE2D8-C0A6-406E-A9E5-4A4F936E70DB}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F1FC503-047F-4B3F-946B-1881BE3B9D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1FC503-047F-4B3F-946B-1881BE3B9D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1FC503-047F-4B3F-946B-1881BE3B9D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1FC503-047F-4B3F-946B-1881BE3B9D02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A966488-8F8F-4913-A515-B5FE1F99EE42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A966488-8F8F-4913-A515-B5FE1F99EE42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A966488-8F8F-4913-A515-B5FE1F99EE42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A966488-8F8F-4913-A515-B5FE1F99EE42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F08EE2D8-C0A6-406E-A9E5-4A4F936E70DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F08EE2D8-C0A6-406E-A9E5-4A4F936E70DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F08EE2D8-C0A6-406E-A9E5-4A4F936E70DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F08EE2D8-C0A6-406E-A9E5-4A4F936E70DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
