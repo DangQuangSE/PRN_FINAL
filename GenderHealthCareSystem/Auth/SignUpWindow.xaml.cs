@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,12 @@ namespace GenderHealthCareSystem.Auth
     {
         private UserService _svUser;
         private AccountService _svAccount;
+
+        // Regex cho số điện thoại
+        private const string PhoneRegexPattern = @"(^0[35789]\d{8}$)|(^\+84[35789]\d{8}$)";
+
+        // Regex cho email
+        private const string EmailRegexPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
         public SignUpWindow()
         {
             InitializeComponent();
@@ -73,6 +80,24 @@ namespace GenderHealthCareSystem.Auth
             {
                 MessageBox.Show("Ngày sinh không được là ngày hôm nay hoặc trong tương lai.",
                         "Ngày sinh không hợp lệ",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                return;
+            }
+
+            if(!Regex.IsMatch(txtPhoneNumber.Text, PhoneRegexPattern))
+            {
+                MessageBox.Show("Số điện thoại không đúng định dạng.",
+                        "Số điện thoại không hợp lệ",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                return;
+            }
+
+            if (!Regex.IsMatch(txtEmail.Text, EmailRegexPattern))
+            {
+                MessageBox.Show("Email không đúng định dạng.",
+                        "Email không hợp lệ",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 return;
