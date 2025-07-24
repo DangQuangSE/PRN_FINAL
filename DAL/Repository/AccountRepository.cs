@@ -23,5 +23,10 @@ namespace DAL.Repository
                 || x.Email == username)
                 && x.Password == password);
         }
+
+        public bool checkAcount(string username, string email)
+        {
+            return _context.Accounts.Any(x => x.UserName == username || x.Email == email);
+        }
     }
 }

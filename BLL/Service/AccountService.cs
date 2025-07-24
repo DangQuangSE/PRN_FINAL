@@ -21,5 +21,10 @@ namespace BLL.Service
         {
             return _rp.Login(username, password);
         }
+
+        public bool checkAcount(string username, string email)
+        {
+            return _rp.checkAcount(username, email);
+        }
     }
 }

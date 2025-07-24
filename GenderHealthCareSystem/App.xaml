@@ -70,8 +70,6 @@
             <!-- Áp dụng Style cho các loại control cụ thể -->
             <Style TargetType="TextBox" BasedOn="{StaticResource RoundedInputStyle}"/>
             <Style TargetType="PasswordBox" BasedOn="{StaticResource RoundedInputStyle}"/>
-            <Style TargetType="DatePicker" BasedOn="{StaticResource RoundedInputStyle}"/>
-            <Style TargetType="ComboBox" BasedOn="{StaticResource RoundedInputStyle}"/>
 
         </ResourceDictionary>
     </Application.Resources>
