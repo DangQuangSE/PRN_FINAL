@@ -1,0 +1,103 @@
+﻿<Window x:Class="GenderHealthCareSystem.Auth.SignUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GenderHealthCareSystem.Auth"
+        mc:Ignorable="d"
+        Title="Đăng ký tài khoản" Height="650" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#f2f2f2">
+
+    <!-- Không cần Window.Resources ở đây nữa -->
+
+    <Grid>
+        <Border Background="White" CornerRadius="10" Padding="30"
+                BorderBrush="#E0E0E0" BorderThickness="1"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Width="700">
+            <StackPanel>
+                <TextBlock Text="ĐĂNG KÝ TÀI KHOẢN" FontSize="26" FontWeight="Bold"
+                           Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+
+                <!-- Form đăng ký -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Cột 1 -->
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <TextBlock Text="Tên đăng nhập" Margin="0,0,0,5" Foreground="#555"/>
+                        <TextBox x:Name="txtUsername" Margin="0,0,0,15"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock Text="Số điện thoại" Margin="0,0,0,5" Foreground="#555"/>
+                        <TextBox x:Name="txtPhoneNumber" Margin="0,0,0,15"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0">
+                        <TextBlock Text="Ngày sinh" Margin="0,0,0,5" Foreground="#555"/>
+                        <DatePicker x:Name="dpBirthDate" Margin="0,0,0,15"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.Column="0">
+                        <TextBlock Text="Địa chỉ" Margin="0,0,0,5" Foreground="#555"/>
+                        <TextBox x:Name="txtAddress" Margin="0,0,0,15"/>
+                    </StackPanel>
+
+                    <!-- Cột 2 -->
+                    <StackPanel Grid.Row="0" Grid.Column="2">
+                        <TextBlock Text="Họ và tên" Margin="0,0,0,5" Foreground="#555"/>
+                        <TextBox x:Name="txtFullName" Margin="0,0,0,15"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="Email" Margin="0,0,0,5" Foreground="#555"/>
+                        <TextBox x:Name="txtEmail" Margin="0,0,0,15"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="2">
+                        <TextBlock Text="Giới tính" Margin="0,0,0,5" Foreground="#555"/>
+                        <ComboBox x:Name="cmbGender" Margin="0,0,0,15">
+                            <ComboBoxItem Content="Nam"/>
+                            <ComboBoxItem Content="Nữ"/>
+                            <ComboBoxItem Content="Khác"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.Column="2">
+                        <TextBlock Text="Mật khẩu" Margin="0,0,0,5" Foreground="#555"/>
+                        <PasswordBox x:Name="txtPassword" Margin="0,0,0,15"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Nút đăng ký -->
+                <Button x:Name="btnSignUp" Content="Đăng ký" Margin="0,15,0,0"
+                        />
+
+                <!-- Quay lại đăng nhập -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <TextBlock Text="Đã có tài khoản? " VerticalAlignment="Center"/>
+                    <TextBlock>
+                        <Hyperlink Foreground="{StaticResource PrimaryColor}" TextDecorations="None" FontWeight="Bold"
+                                   Click="Login_Click">
+                            Đăng nhập ngay
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

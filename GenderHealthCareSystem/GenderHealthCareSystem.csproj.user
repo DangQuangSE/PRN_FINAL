@@ -2,7 +2,10 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="LoginWindow.xaml.cs">
+    <Compile Update="Auth\LoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Auth\SignUpWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
