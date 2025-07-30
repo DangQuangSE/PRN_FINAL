@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenderHealthCareSystem.Dashboard"
+        xmlns:stis="clr-namespace:GenderHealthCareSystem.ServiceMangement" 
         mc:Ignorable="d"
         Title="ManagerDashboard" Height="450" Width="800">
     <Grid>
-        
+        <TabControl Margin="10">
+            <TabItem Header="Quản lý Dịch vụ Stis">
+                <stis:StisServiceWindow/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

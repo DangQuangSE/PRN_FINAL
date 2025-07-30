@@ -8,6 +8,12 @@
     <Compile Update="Auth\SignUpWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ServiceMangement\StisServiceDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ServiceMangement\StisServiceWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="StisBookingFunc\ManageStisBooking.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -15,13 +21,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="StisBookingFunc\StisBookingWindow.xaml.cs">
-    <Compile Update="Dashboard\ConsultantDashboard.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Dashboard\CustomerDashboard.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Dashboard\ManagerDashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
