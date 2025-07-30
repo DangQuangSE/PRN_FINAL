@@ -33,8 +33,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
         private void LoadBookings()
         {
             // Assuming you have a method to get the current user's customer ID
-            int customerId = 29; // Replace with actual customer ID retrieval logic
-            var bookings = bookingService.GetBookingsByCustomerId(customerId);
+            var bookings = bookingService.GetBookingsByCustomerId(CustomerId);
             dgStisBookingList.ItemsSource = bookings;
         }
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -53,7 +52,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
                 {
                     ServiceId = dialog.ServiceId,
                     BookingDate = dialog.BookingDate.Value + dialog.BookingTime.Value,
-                    CustomerId =29,
+                    CustomerId = CustomerId,
                     Note = dialog.Note,
                     PaymentMethod = dialog.PaymentMethod
                 };
@@ -67,7 +66,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
         {
             if (dgStisBookingList.SelectedItem is StisBooking selectedBooking)
             {
-                var result = MessageBox.Show("Are you sure you want to delete this booking?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var result = MessageBox.Show("Are you sure you want to cancel this booking?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
                     bookingService.DeleteBooking(selectedBooking.BookingId);
@@ -76,7 +75,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
             }
             else
             {
-                MessageBox.Show("Please select a booking to delete.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Please select a booking to cancel.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }
@@ -109,5 +108,33 @@ namespace GenderHealthCareSystem.StisBookingFunc
             }
            
         }
+
+        private void btnViewResult_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgStisBookingList.SelectedItem is StisBooking selectedBooking)
+            {
+                ppresult.IsOpen = true; // Open the result popup
+                var result = selectedBooking?.StisResults?.FirstOrDefault();
+                if (result != null)
+                {
+                    tbresult.Text = result.Note;
+                    // dùng note nếu cần
+                }
+                else
+                {
+                    // xử lý nếu không có kết quả
+                    MessageBox.Show("Không có kết quả xét nghiệm để hiển thị.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a booking to view result.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        private void btnClosePopup_Click(object sender, RoutedEventArgs e)
+        {
+            ppresult.IsOpen = false; // Close the result popup
+        }
+        
     }
 }
