@@ -49,8 +49,8 @@ namespace GenderHealthCareSystem.Auth
         {
             var genderOptions = new[] 
             {
-                new  { DisplayName = "Nam", Value = "male" },
-                new  { DisplayName = "Nữ", Value = "female" },
+                new  { DisplayName = "Nam", Value = "Male" },
+                new  { DisplayName = "Nữ", Value = "Female" },
             };
             cbGender.ItemsSource = genderOptions;
             cbGender.DisplayMemberPath = "DisplayName";
