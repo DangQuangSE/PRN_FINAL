@@ -49,7 +49,18 @@
             <Button x:Name="btnAdd" Content="Add New Booking" Click="Add_Click"/>
             <Button x:Name="btnEdit" Content="Change BookingDate" Click="btnEdit_Click"/>
             <Button x:Name="btnDelete" Content="cancel Booking" Click="Delete_Click"/>
+            <Button x:Name="btnViewResult" Content="View Result" Click="btnViewResult_Click"/>
         </StackPanel>
+        <Popup Placement="Center" x:Name="ppresult" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
+            <StackPanel Height="500" Width="450" Background="White" Margin="20" 
+                VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox x:Name="tbresult" Width="400" Height="400"  TextWrapping="Wrap"
+                 AcceptsReturn="True"
+    AcceptsTab="True"
+    VerticalScrollBarVisibility="Auto"/>
+                <Button Content="Close" Click="btnClosePopup_Click" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Popup>
 
     </StackPanel>
 </Window>

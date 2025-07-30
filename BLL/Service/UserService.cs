@@ -17,14 +17,19 @@ namespace BLL.Service
             _rp = new UserRepository();
         }
 
-        public User? GetUserByAccountId(int accountId)
+        public User? GetUserByAccountId(Account account)
         {
-            return _rp.GetUserByAccountId(accountId);
+            return _rp.GetUserByAccountId(account);
         }
 
         public void SignUpUser(User user, string email, string usename, string password)
         {
             _rp.SignUpUser(user, email, usename, password);
+        }
+
+        public void UpdateProfile(User user)
+        {
+            _rp.UpdateProfile(user);
         }
     }
 }

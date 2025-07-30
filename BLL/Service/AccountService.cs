@@ -26,5 +26,10 @@ namespace BLL.Service
         {
             return _rp.checkAcount(username, email);
         }
+
+        public Account? GetAccountByUserId(int userId)
+        {
+            return _rp.GetAccountByUserId(userId);
+        }
     }
 }

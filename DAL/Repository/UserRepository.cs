@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +17,10 @@ namespace DAL.Repository
             _context = new GenderHealthCareSystemContext();
         }
 
-        public User? GetUserByAccountId(int accountId)
+        public User? GetUserByAccountId(Account account)
         {
-            return _context.Users.Find(accountId);
+            var userId = account.UserId;
+            return _context.Users.Find(userId);
         }
 
         public void SignUpUser(User user, string email, string username, string password)
@@ -39,21 +40,20 @@ namespace DAL.Repository
             _context.SaveChanges();
         }
 
-        public User CreateCustomer(User customer)
+        public void UpdateProfile(User user)
         {
-            // Set default role for customer (assuming RoleId 2 is for customers)
-            customer.RoleId = 2; // Customer role
-            _context.Users.Add(customer);
-            _context.SaveChanges();
-            return customer;
-        }
+            var existUser = _context.Users.Find(user.UserId);
+            if (existUser != null)
+            {
+                existUser.FullName = user.FullName;
+                existUser.Address = user.Address;
+                existUser.BirthDate = user.BirthDate;
+                existUser.Gender = user.Gender;
+                existUser.Phone = user.Phone;
 
-        public List<User> GetAllConsultants()
-        {
-            return _context.Users
-                .Include(u => u.Role)
-                .Where(u => u.Role != null && u.Role.RoleName == "Consultant")
-                .ToList();
+                _context.Users.Update(existUser);
+                _context.SaveChanges();
+            }
         }
     }
 }

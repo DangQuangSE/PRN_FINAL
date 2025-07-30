@@ -29,5 +29,10 @@ namespace DAL.Repository
         {
             return _context.Accounts.Any(a => a.UserName == username || a.Email == email);
         }
+
+        public Account? GetAccountByUserId(int userId)
+        {
+            return _context.Accounts.FirstOrDefault(x => x.UserId == userId);
+        }
     }
 }

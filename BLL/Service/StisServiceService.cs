@@ -25,5 +25,19 @@ namespace BLL.Service
         {
             return _stisServiceRepository.GetServicesByType(type);
         }
+        public void AddService(DAL.Entities.StisService service)
+        {
+            _stisServiceRepository.AddService(service);
+        }
+
+        public void UpdateService(DAL.Entities.StisService updatedService)
+        {
+            _stisServiceRepository.UpdateService(updatedService);
+        }
+
+        public void DeleteService(int serviceId)
+        {
+            _stisServiceRepository.DeleteService(serviceId);
+        }
     }
 }
