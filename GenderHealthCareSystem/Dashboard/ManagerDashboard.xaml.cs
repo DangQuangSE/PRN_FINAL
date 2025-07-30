@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DAL.Entities;
+using GenderHealthCareSystem.StisBookingFunc;
 
 namespace GenderHealthCareSystem.Dashboard
 {
@@ -24,6 +25,13 @@ namespace GenderHealthCareSystem.Dashboard
         public ManagerDashboard()
         {
             InitializeComponent();
+        }
+
+        private void btnManageStisBooking_Click(object sender, RoutedEventArgs e)
+        {
+            ManageStisBooking manageStisBooking = new ManageStisBooking();
+            this.Close();
+            manageStisBooking.Show();
         }
     }
 }

@@ -76,7 +76,7 @@
 
             <!-- Tab 3: Test History -->
             <TabItem Header="Lịch xét nghiệm">
-                <DataGrid Name="dgTestHistory" AutoGenerateColumns="True" Margin="10"/>
+                <Button x:Name="viewbooking" Content="manage booking" Click="viewbooking_Click" />
             </TabItem>
         </TabControl>
     </Grid>

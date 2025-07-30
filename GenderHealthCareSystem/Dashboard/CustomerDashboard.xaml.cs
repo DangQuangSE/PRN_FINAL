@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLL.Service;
 using DAL.Entities;
+using GenderHealthCareSystem.StisBookingFunc;
 
 namespace GenderHealthCareSystem.Dashboard
 {
@@ -83,6 +84,13 @@ namespace GenderHealthCareSystem.Dashboard
             _userService.UpdateProfile(new_user);
             user = new_user;
             LoadProfile();
+        }
+
+        private void viewbooking_Click(object sender, RoutedEventArgs e)
+        {
+            StisBookingWindow stisBookingWindow = new StisBookingWindow(user.UserId);
+            this.Close();
+            stisBookingWindow.Show();
         }
     }
 }
