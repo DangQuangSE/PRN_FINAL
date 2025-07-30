@@ -8,5 +8,14 @@
     <Compile Update="Auth\SignUpWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Dashboard\ConsultantDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dashboard\CustomerDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dashboard\ManagerDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
