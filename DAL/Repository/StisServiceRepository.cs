@@ -38,7 +38,7 @@ namespace DAL.Repository
         public void AddService(StisService service)
         {
             service.CreatedAt = DateTime.Now;
-            service.Status = "ACTIVVE";
+            service.Status = "ACTIVE";
             _context.StisServices.Add(service);
             _context.SaveChanges();
         }
