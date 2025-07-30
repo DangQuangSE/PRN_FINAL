@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLL.Service;
+using GenderHealthCareSystem.Dashboard;
 
 namespace GenderHealthCareSystem.Auth
 {
@@ -21,10 +22,12 @@ namespace GenderHealthCareSystem.Auth
     public partial class LoginWindow : Window
     {
         private readonly AccountService _svAccount;
+        private readonly UserService _userService;
         public LoginWindow()
         {
             InitializeComponent();
             _svAccount = new AccountService();
+            _userService = new UserService();
         }
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
@@ -51,9 +54,20 @@ namespace GenderHealthCareSystem.Auth
             var account = _svAccount.Login(username, password);
             if (account != null)
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
+                var user = _userService.GetUserByAccountId(account);
+                if (user.RoleId == 4)
+                {
+                    CustomerDashboard customerDashboard = new CustomerDashboard(user);
+                    customerDashboard.Show();
+                    this.Close();
+                }
+                else if (user.RoleId == 2)
+                {
+                    ManagerDashboard managerDashboard = new ManagerDashboard();
+                    managerDashboard.user = user;
+                    managerDashboard.Show();
+                    this.Close();
+                }
             }
             else
             {

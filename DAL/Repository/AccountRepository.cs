@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using DAL.Entities;
 
 namespace DAL.Repository
@@ -18,15 +19,20 @@ namespace DAL.Repository
 
         public Account? Login(string username, string password)
         {
-            //var hashedPass = BCrypt.Net.BCrypt.HashPassword(password);
-            return _context.Accounts.FirstOrDefault(x => (x.UserName == username
-                || x.Email == username)
-                && x.Password == password);
+            return _context.Accounts
+                .Include(a => a.User)
+                .ThenInclude(u => u.Role)
+                .FirstOrDefault(a => a.UserName == username && a.Password == password && a.Status == "ACTIVE");
         }
 
         public bool checkAcount(string username, string email)
         {
-            return _context.Accounts.Any(x => x.UserName == username || x.Email == email);
+            return _context.Accounts.Any(a => a.UserName == username || a.Email == email);
+        }
+
+        public Account? GetAccountByUserId(int userId)
+        {
+            return _context.Accounts.FirstOrDefault(x => x.UserId == userId);
         }
     }
 }

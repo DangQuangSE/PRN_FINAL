@@ -1,0 +1,40 @@
+﻿<Window x:Class="GenderHealthCareSystem.ServiceMangement.StisServiceDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GenderHealthCareSystem.ServiceMangement"
+        mc:Ignorable="d"
+          Title="Thông tin Dịch vụ" Height="500" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="Tên dịch vụ:"/>
+            <TextBox x:Name="txtName"/>
+
+            <TextBlock Text="Loại:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtType"/>
+
+            <TextBlock Text="Giá:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtPrice"/>
+
+            <TextBlock Text="Thời lượng:" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtDuration"/>
+
+            <TextBlock Text="Trạng thái:" Margin="0,10,0,0"/>
+            <ComboBox x:Name="cbStatus" SelectedIndex="0">
+                <ComboBoxItem Content="active"/>
+                <ComboBoxItem Content="inactive"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Lưu" Width="80" Margin="5" Click="Save_Click"/>
+            <Button Content="Huỷ" Width="80" Margin="5" Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

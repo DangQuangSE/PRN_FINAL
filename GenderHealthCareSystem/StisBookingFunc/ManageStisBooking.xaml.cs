@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DAL.Entities;
+using GenderHealthCareSystem.Dashboard;
 
 namespace GenderHealthCareSystem.StisBookingFunc
 {
@@ -21,10 +22,12 @@ namespace GenderHealthCareSystem.StisBookingFunc
     public partial class ManageStisBooking : Window
     {
         private readonly BLL.Service.StisBookingService bookingService;
+        private readonly BLL.Service.StisResultService resultService;
         public ManageStisBooking()
         {
             InitializeComponent();
             bookingService = new BLL.Service.StisBookingService();
+            resultService = new BLL.Service.StisResultService();
             LoadBookings();
         }
         private void LoadBookings()
@@ -90,11 +93,56 @@ namespace GenderHealthCareSystem.StisBookingFunc
         private void btnClosePopup_Click(object sender, RoutedEventArgs e)
         {
            ppStatus.IsOpen = false; // Close the popup without updating
+            ppresult.IsOpen = false; // Close the result popup
         }
 
         private void btnAddResult_Click(object sender, RoutedEventArgs e)
         {
+            if (dgStisBookingList.SelectedItem is StisBooking selectedBooking)
+            {
 
+                ppresult.IsOpen = true;
+            }
+            else
+            {
+                MessageBox.Show("Please select a booking to add result.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        private void btnaddresult_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgStisBookingList.SelectedItem is StisBooking selectedBooking)
+            {
+
+                ppresult.IsOpen = true;
+                if (!string.IsNullOrWhiteSpace(txtResult.Text))
+                {
+                    resultService.AddResult(new DAL.Entities.StisResult
+                    {
+                        BookingId = selectedBooking.BookingId,
+                        Note = txtResult.Text,
+                        CreatedAt = DateTime.Now
+                    }); 
+                    selectedBooking.Status = "COMPLETED";
+                    bookingService.UpdateBooking(selectedBooking);
+                    LoadBookings();
+                    ppresult.IsOpen = false; // Close the popup after updating
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a result.", "No Result Entered", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a booking to add result.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerDashboard managerDashboard = new ManagerDashboard();
+            managerDashboard.Show();
+            this.Close();
         }
     }
 }

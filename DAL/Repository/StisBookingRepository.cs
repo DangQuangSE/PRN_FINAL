@@ -19,6 +19,7 @@ namespace DAL.Repository
         {
             return _context.StisBookings
                 .Include(b => b.Service)
+                .Include(r => r.StisResults)
                 .Where(b => b.CustomerId == customerId)
                 .OrderByDescending(b => b.BookingDate)
                 .ToList();
@@ -65,6 +66,7 @@ namespace DAL.Repository
                 .Include(b => b.Customer)
                 .Include(b => b.Service)
                 .OrderByDescending(b => b.CreatedAt)
+                .Take(25)
                 .ToList();
         }
 

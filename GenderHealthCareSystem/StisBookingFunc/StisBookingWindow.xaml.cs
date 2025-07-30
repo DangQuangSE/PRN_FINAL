@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLL.Service;
 using DAL.Entities;
+using GenderHealthCareSystem.Dashboard;
 
 namespace GenderHealthCareSystem.StisBookingFunc
 {
@@ -22,19 +24,22 @@ namespace GenderHealthCareSystem.StisBookingFunc
     {
         private readonly BLL.Service.StisBookingService bookingService;
         private readonly BLL.Service.StisServiceService serviceService;
+        private readonly UserService userService;
         public int CustomerId { get; set; }
-        public StisBookingWindow()
+        public StisBookingWindow( int id)
         {
             InitializeComponent();
+            CustomerId = id;
             bookingService = new BLL.Service.StisBookingService();
             serviceService = new BLL.Service.StisServiceService();
+            userService = new UserService();
             LoadBookings();
         }
         private void LoadBookings()
         {
             // Assuming you have a method to get the current user's customer ID
-            int customerId = 29; // Replace with actual customer ID retrieval logic
-            var bookings = bookingService.GetBookingsByCustomerId(customerId);
+
+            var bookings = bookingService.GetBookingsByCustomerId(CustomerId);
             dgStisBookingList.ItemsSource = bookings;
         }
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -53,7 +58,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
                 {
                     ServiceId = dialog.ServiceId,
                     BookingDate = dialog.BookingDate.Value + dialog.BookingTime.Value,
-                    CustomerId =29,
+                    CustomerId = CustomerId,
                     Note = dialog.Note,
                     PaymentMethod = dialog.PaymentMethod
                 };
@@ -67,7 +72,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
         {
             if (dgStisBookingList.SelectedItem is StisBooking selectedBooking)
             {
-                var result = MessageBox.Show("Are you sure you want to delete this booking?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var result = MessageBox.Show("Are you sure you want to cancel this booking?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
                     bookingService.DeleteBooking(selectedBooking.BookingId);
@@ -76,7 +81,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
             }
             else
             {
-                MessageBox.Show("Please select a booking to delete.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Please select a booking to cancel.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }
@@ -108,6 +113,41 @@ namespace GenderHealthCareSystem.StisBookingFunc
                 MessageBox.Show("Please select a booking to edit.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
             }
            
+        }
+
+        private void btnViewResult_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgStisBookingList.SelectedItem is StisBooking selectedBooking)
+            {
+                ppresult.IsOpen = true; // Open the result popup
+                var result = selectedBooking?.StisResults?.FirstOrDefault();
+                if (result != null)
+                {
+                    tbresult.Text = result.Note;
+                    // dùng note nếu cần
+                }
+                else
+                {
+                    // xử lý nếu không có kết quả
+                    MessageBox.Show("Không có kết quả xét nghiệm để hiển thị.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a booking to view result.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        private void btnClosePopup_Click(object sender, RoutedEventArgs e)
+        {
+            ppresult.IsOpen = false; // Close the result popup
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            var user = userService.GetUserByUserId(CustomerId);
+            CustomerDashboard customer = new CustomerDashboard(user);
+            customer.Show();
+            this.Close();
         }
     }
 }
