@@ -26,12 +26,5 @@ namespace GenderHealthCareSystem.Dashboard
         {
             InitializeComponent();
         }
-
-        private void btnManageStisBooking_Click(object sender, RoutedEventArgs e)
-        {
-            ManageStisBooking manageStisBooking = new ManageStisBooking();
-            this.Close();
-            manageStisBooking.Show();
-        }
     }
 }

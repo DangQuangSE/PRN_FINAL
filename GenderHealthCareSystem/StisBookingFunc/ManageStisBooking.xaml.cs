@@ -18,7 +18,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
     /// <summary>
     /// Interaction logic for ManageStisBooking.xaml
     /// </summary>
-    public partial class ManageStisBooking : Window
+    public partial class ManageStisBooking : UserControl
     {
         private readonly BLL.Service.StisBookingService bookingService;
         private readonly BLL.Service.StisResultService resultService;

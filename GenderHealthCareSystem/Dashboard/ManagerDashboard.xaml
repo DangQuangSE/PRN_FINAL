@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenderHealthCareSystem.Dashboard"
         xmlns:stis="clr-namespace:GenderHealthCareSystem.ServiceMangement" 
+        xmlns:book="clr-namespace:GenderHealthCareSystem.StisBookingFunc"
         mc:Ignorable="d"
         Title="ManagerDashboard" Height="450" Width="800">
     <Grid>
@@ -12,9 +13,10 @@
             <TabItem Header="Quản lý Dịch vụ Stis">
                 <stis:StisServiceWindow/>
             </TabItem>
+            <TabItem Header="Quản lý Booking Stis">
+                <book:ManageStisBooking/>
+            </TabItem>
         </TabControl>
     </Grid>
-    <StackPanel>
-        <Button x:Name="btnManageStisBooking" Content="Manage STIs Booking" Click="btnManageStisBooking_Click" Margin="10"/>
-    </StackPanel>
+    
 </Window>
