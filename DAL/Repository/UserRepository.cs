@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using DAL.Entities;
 
 namespace DAL.Repository
@@ -38,6 +39,24 @@ namespace DAL.Repository
             _context.Accounts.Add(account);
             _context.SaveChanges();
         }
+
+        public User CreateCustomer(User customer)
+        {
+            // Set default role for customer (assuming RoleId 2 is for customers)
+            customer.RoleId = 2; // Customer role
+            _context.Users.Add(customer);
+            _context.SaveChanges();
+            return customer;
+        }
+
+        public List<User> GetAllConsultants()
+        {
+            return _context.Users
+                .Include(u => u.Role)
+                .Where(u => u.Role != null && u.Role.RoleName == "Consultant")
+                .ToList();
+        }
+
 
         public void UpdateProfile(User user)
         {
