@@ -32,7 +32,7 @@ namespace DAL.Repository
         public void AddBooking(StisBooking booking)
         {
             booking.CreatedAt = DateTime.Now;
-            booking.Status = "pending";
+            booking.Status = "PENDING";
             _context.StisBookings.Add(booking);
             _context.SaveChanges();
         }
@@ -58,6 +58,7 @@ namespace DAL.Repository
                 _context.SaveChanges();
             }
         }
+
         public List<StisBooking> GetAllBookings()
         {
             return _context.StisBookings

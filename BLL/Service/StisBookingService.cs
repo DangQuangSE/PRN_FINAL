@@ -33,5 +33,13 @@ namespace BLL.Service
         {
             _stisBookingRepository.DeleteBooking(bookingId);
         }
+        public List<DAL.Entities.StisBooking> SearchBooking(string text)
+        {
+            return _stisBookingRepository.GetAllBookings().Where(p => p.Customer.FullName.ToLower().Contains(text.ToLower())).ToList();
+        }
+        public List<DAL.Entities.StisBooking> GetAllBookings()
+        {
+            return _stisBookingRepository.GetAllBookings();
+        }
     }
 }
