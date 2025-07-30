@@ -23,9 +23,10 @@ namespace GenderHealthCareSystem.StisBookingFunc
         private readonly BLL.Service.StisBookingService bookingService;
         private readonly BLL.Service.StisServiceService serviceService;
         public int CustomerId { get; set; }
-        public StisBookingWindow()
+        public StisBookingWindow( int id)
         {
             InitializeComponent();
+            CustomerId = id;
             bookingService = new BLL.Service.StisBookingService();
             serviceService = new BLL.Service.StisServiceService();
             LoadBookings();
@@ -33,6 +34,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
         private void LoadBookings()
         {
             // Assuming you have a method to get the current user's customer ID
+
             var bookings = bookingService.GetBookingsByCustomerId(CustomerId);
             dgStisBookingList.ItemsSource = bookings;
         }
