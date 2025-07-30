@@ -59,24 +59,16 @@
                     <!-- Nút Lưu -->
                     <Button Content="Lưu thay đổi"
                             x:Name="btnUpdateProfile"
-                Grid.Row="4"
-                Grid.ColumnSpan="2"
-                Width="150"
-                Height="35"
-                Margin="10"
-                HorizontalAlignment="Center" Click="btnUpdateProfile_Click" />
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    Width="150"
+                    Height="35"
+                    Margin="10"
+                    HorizontalAlignment="Center" Click="btnUpdateProfile_Click" />
+                    <Button Content="Xét nghiệm STIs" x:Name="btnTesting" Grid.Row="5" Width="200" Click="btnTesting_Click"/>
+                    <Button Content="Tư vấn" x:Name="btnConsul" Grid.Row="5" Width="200" Grid.Column="1"/>
                 </Grid>
-            </TabItem>
-
-
-            <!-- Tab 2: Consultation History -->
-            <TabItem Header="Lịch sử tư vấn">
-                <DataGrid Name="dgConsultationHistory" AutoGenerateColumns="True" Margin="10"/>
-            </TabItem>
-
-            <!-- Tab 3: Test History -->
-            <TabItem Header="Lịch xét nghiệm">
-                <Button x:Name="viewbooking" Content="manage booking" Click="viewbooking_Click" />
+                
             </TabItem>
         </TabControl>
     </Grid>

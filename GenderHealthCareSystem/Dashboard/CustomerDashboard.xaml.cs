@@ -92,5 +92,12 @@ namespace GenderHealthCareSystem.Dashboard
             this.Close();
             stisBookingWindow.Show();
         }
+
+        private void btnTesting_Click(object sender, RoutedEventArgs e)
+        {
+            StisBookingWindow stisBooking = new StisBookingWindow(user.UserId);
+            stisBooking.Show();
+            this.Close();
+        }
     }
 }
