@@ -54,11 +54,10 @@ namespace GenderHealthCareSystem.Auth
             var account = _svAccount.Login(username, password);
             if (account != null)
             {
-                var user = _userService.GetUserByAccountId(account.AccountId);
+                var user = _userService.GetUserByAccountId(account);
                 if (user.RoleId == 4)
                 {
-                    CustomerDashboard customerDashboard = new CustomerDashboard();
-                    customerDashboard.user = user;
+                    CustomerDashboard customerDashboard = new CustomerDashboard(user);
                     customerDashboard.Show();
                     this.Close();
                 }

@@ -20,7 +20,16 @@
     <Compile Update="StisBookingFunc\StisBookingDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="StisBookingFunc\StisBookingWindow.xaml.cs">
+	  <Compile Update="StisBookingFunc\StisBookingWindow.xaml.cs">
+		  <SubType>Code</SubType>
+	  </Compile>
+    <Compile Update="Dashboard\ConsultantDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dashboard\CustomerDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dashboard\ManagerDashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

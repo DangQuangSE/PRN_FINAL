@@ -14,4 +14,7 @@
             </TabItem>
         </TabControl>
     </Grid>
+    <StackPanel>
+        <Button x:Name="btnManageStisBooking" Content="Manage STIs Booking" Click="btnManageStisBooking_Click" Margin="10"/>
+    </StackPanel>
 </Window>

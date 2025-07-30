@@ -16,9 +16,10 @@ namespace DAL.Repository
             _context = new GenderHealthCareSystemContext();
         }
 
-        public User? GetUserByAccountId(int accountId)
+        public User? GetUserByAccountId(Account account)
         {
-            return _context.Users.Find(accountId);
+            var userId = account.UserId;
+            return _context.Users.Find(userId);
         }
 
         public void SignUpUser(User user, string email, string username, string password)
@@ -36,6 +37,22 @@ namespace DAL.Repository
             };
             _context.Accounts.Add(account);
             _context.SaveChanges();
+        }
+
+        public void UpdateProfile(User user)
+        {
+            var existUser = _context.Users.Find(user.UserId);
+            if (existUser != null)
+            {
+                existUser.FullName = user.FullName;
+                existUser.Address = user.Address;
+                existUser.BirthDate = user.BirthDate;
+                existUser.Gender = user.Gender;
+                existUser.Phone = user.Phone;
+
+                _context.Users.Update(existUser);
+                _context.SaveChanges();
+            }
         }
     }
 }

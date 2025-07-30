@@ -30,7 +30,7 @@
 
                     <!-- Tên đăng nhập -->
                     <Label Content="Tên đăng nhập" Grid.Row="0" Grid.Column="0" Margin="5"/>
-                    <TextBox Name="txtUsername" Grid.Row="0" Grid.Column="0" Margin="5,25,5,5"/>
+                    <TextBox Name="txtUsername" Grid.Row="0" Grid.Column="0" Margin="5,25,5,5" IsReadOnly="True"/>
 
                     <!-- Họ và tên -->
                     <Label Content="Họ và tên" Grid.Row="0" Grid.Column="1" Margin="5"/>
@@ -42,7 +42,7 @@
 
                     <!-- Email -->
                     <Label Content="Email" Grid.Row="1" Grid.Column="1" Margin="5"/>
-                    <TextBox Name="txtEmail" Grid.Row="1" Grid.Column="1" Margin="5,25,5,5"/>
+                    <TextBox Name="txtEmail" Grid.Row="1" Grid.Column="1" Margin="5,25,5,5" IsReadOnly="True"/>
 
                     <!-- Ngày sinh -->
                     <Label Content="Ngày sinh" Grid.Row="2" Grid.Column="0" Margin="5"/>
@@ -50,40 +50,25 @@
 
                     <!-- Giới tính -->
                     <Label Content="Giới tính" Grid.Row="2" Grid.Column="1" Margin="5"/>
-                    <ComboBox Name="cbGender" Grid.Row="2" Grid.Column="1" Margin="5,25,5,5">
-                        <ComboBoxItem Content="Nam"/>
-                        <ComboBoxItem Content="Nữ"/>
-                        <ComboBoxItem Content="Khác"/>
-                    </ComboBox>
+                    <ComboBox Name="cbGender" Grid.Row="2" Grid.Column="1" Margin="5,25,5,5"/>
 
                     <!-- Địa chỉ -->
                     <Label Content="Địa chỉ" Grid.Row="3" Grid.Column="0" Margin="5"/>
                     <TextBox Name="txtAddress" Grid.Row="3" Grid.Column="0" Margin="5,25,5,5"/>
 
-                    <!-- Mật khẩu -->
-                    <Label Content="Mật khẩu" Grid.Row="3" Grid.Column="1" Margin="5"/>
-                    <PasswordBox Name="txtPassword" Grid.Row="3" Grid.Column="1" Margin="5,25,5,5"/>
-
                     <!-- Nút Lưu -->
                     <Button Content="Lưu thay đổi"
-                Grid.Row="4"
-                Grid.ColumnSpan="2"
-                Width="150"
-                Height="35"
-                Margin="10"
-                HorizontalAlignment="Center"/>
+                            x:Name="btnUpdateProfile"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    Width="150"
+                    Height="35"
+                    Margin="10"
+                    HorizontalAlignment="Center" Click="btnUpdateProfile_Click" />
+                    <Button Content="Xét nghiệm STIs" x:Name="btnTesting" Grid.Row="5" Width="200" Click="btnTesting_Click"/>
+                    <Button Content="Tư vấn" x:Name="btnConsul" Grid.Row="5" Width="200" Grid.Column="1"/>
                 </Grid>
-            </TabItem>
-
-
-            <!-- Tab 2: Consultation History -->
-            <TabItem Header="Lịch sử tư vấn">
-                <DataGrid Name="dgConsultationHistory" AutoGenerateColumns="True" Margin="10"/>
-            </TabItem>
-
-            <!-- Tab 3: Test History -->
-            <TabItem Header="Lịch xét nghiệm">
-                <DataGrid Name="dgTestHistory" AutoGenerateColumns="True" Margin="10"/>
+                
             </TabItem>
         </TabControl>
     </Grid>
