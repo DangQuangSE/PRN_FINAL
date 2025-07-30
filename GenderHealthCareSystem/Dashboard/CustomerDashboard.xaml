@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenderHealthCareSystem.Dashboard"
         mc:Ignorable="d"
-        Title="Customer Dashboard" Height="500" Width="800">
+        Title="Customer Dashboard" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen">
 
     <Grid Margin="10">
         <TabControl>
@@ -66,7 +67,7 @@
                     Margin="10"
                     HorizontalAlignment="Center" Click="btnUpdateProfile_Click" />
                     <Button Content="Xét nghiệm STIs" x:Name="btnTesting" Grid.Row="5" Width="200" Click="btnTesting_Click"/>
-                    <Button Content="Tư vấn" x:Name="btnConsul" Grid.Row="5" Width="200" Grid.Column="1"/>
+                    <Button Content="Tư vấn" x:Name="btnConsul" Grid.Row="5" Width="200" Grid.Column="1" Click="btnConsul_Click"/>
                 </Grid>
                 
             </TabItem>

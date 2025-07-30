@@ -61,13 +61,6 @@ namespace GenderHealthCareSystem.Auth
                     customerDashboard.Show();
                     this.Close();
                 }
-                else if (user.RoleId == 5)
-                {
-                    ConsultantDashboard consultantDashboard = new ConsultantDashboard();
-                    consultantDashboard.user = user;
-                    consultantDashboard.Show();
-                    this.Close();
-                }
                 else if (user.RoleId == 2)
                 {
                     ManagerDashboard managerDashboard = new ManagerDashboard();

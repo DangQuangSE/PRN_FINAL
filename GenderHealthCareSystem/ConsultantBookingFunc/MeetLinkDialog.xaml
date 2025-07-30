@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenderHealthCareSystem.ConsultantBookingFunc"
         mc:Ignorable="d"
-        Title="Add Meeting Link" Height="300" Width="500" 
+        Title="Add Meeting Link" Height="500" Width="500" 
         WindowStartupLocation="CenterOwner"
-        Background="#FFD0E8D0" FontFamily="Arial" FontSize="13">
+        FontFamily="Arial" FontSize="13">
     <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Center">
         <TextBlock Text="Set Meeting Link" 
                    FontSize="18" FontWeight="Bold" 
@@ -27,13 +27,13 @@
         
         <TextBlock Text="Common meeting platforms:" FontStyle="Italic" Margin="0,5" Foreground="#FF888888"/>
         <StackPanel Orientation="Vertical" Margin="0,5,0,15">
-            <Button x:Name="btnZoom" Content="Generate Zoom Link" Width="200" Height="30" Margin="0,2" Click="btnZoom_Click"/>
-            <Button x:Name="btnGoogleMeet" Content="Generate Google Meet Link" Width="200" Height="30" Margin="0,2" Click="btnGoogleMeet_Click"/>
-            <Button x:Name="btnTeams" Content="Generate Teams Link" Width="200" Height="30" Margin="0,2" Click="btnTeams_Click"/>
+            <Button x:Name="btnZoom" Content="Generate Zoom Link" Width="240" Height="30" Margin="0,2" Click="btnZoom_Click"/>
+            <Button x:Name="btnGoogleMeet" Content="Generate Google Meet Link" Width="240" Height="30" Margin="0,2" Click="btnGoogleMeet_Click"/>
+            <Button x:Name="btnTeams" Content="Generate Teams Link" Width="240" Height="30" Margin="0,2" Click="btnTeams_Click"/>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button Content="Save Link" Width="80" Margin="0,0,10,0" Click="Ok_Click"/>
+            <Button Content="Save Link" Width="100" Margin="0,0,10,0" Click="Ok_Click"/>
             <Button Content="Cancel" Width="80" Click="Cancel_Click"/>
         </StackPanel>
     </StackPanel>

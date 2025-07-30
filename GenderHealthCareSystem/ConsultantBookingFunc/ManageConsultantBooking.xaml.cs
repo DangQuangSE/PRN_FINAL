@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DAL.Entities;
+using GenderHealthCareSystem.Dashboard;
 
 namespace GenderHealthCareSystem.ConsultantBookingFunc
 {
@@ -171,6 +172,13 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
         private void btnClosePopup_Click(object sender, RoutedEventArgs e)
         {
             ppStatus.IsOpen = false;
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerDashboard managerDashboard = new ManagerDashboard();
+            managerDashboard.Show();
+            this.Close();
         }
     }
 }

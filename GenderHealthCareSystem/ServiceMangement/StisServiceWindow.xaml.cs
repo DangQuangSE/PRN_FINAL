@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLL.Service;
 using DAL.Entities;
+using GenderHealthCareSystem.Dashboard;
 
 namespace GenderHealthCareSystem.ServiceMangement
 {
     /// <summary>
     /// Interaction logic for StisServiceWindow.xaml
     /// </summary>
-    public partial class StisServiceWindow : UserControl
+    public partial class StisServiceWindow : Window
     {
         private readonly StisServiceService _service;
 
@@ -84,6 +85,13 @@ namespace GenderHealthCareSystem.ServiceMangement
             {
                 MessageBox.Show("Vui lòng chọn một dịch vụ để xoá.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerDashboard managerDashboard = new ManagerDashboard();
+            managerDashboard.Show();
+            this.Close();
         }
     }
 }

@@ -23,6 +23,11 @@ namespace DAL.Repository
             return _context.Users.Find(userId);
         }
 
+        public User? GetUserByUserId(int id)
+        {
+            return _context.Users.Find(id);
+        }
+
         public void SignUpUser(User user, string email, string username, string password)
         {
             var id = _context.Users.Max(x => x.UserId) + 1;

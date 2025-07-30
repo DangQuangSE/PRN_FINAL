@@ -7,16 +7,41 @@
         xmlns:stis="clr-namespace:GenderHealthCareSystem.ServiceMangement" 
         xmlns:book="clr-namespace:GenderHealthCareSystem.StisBookingFunc"
         mc:Ignorable="d"
-        Title="ManagerDashboard" Height="450" Width="800">
-    <Grid>
-        <TabControl Margin="10">
-            <TabItem Header="Quản lý Dịch vụ Stis">
-                <stis:StisServiceWindow/>
-            </TabItem>
-            <TabItem Header="Quản lý Booking Stis">
-                <book:ManageStisBooking/>
-            </TabItem>
-        </TabControl>
+        Title="Manager Dashboard" Height="450" Width="600"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#FFF0F8FF">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
+
+            <TextBlock Text="TRANG QUẢN LÝ"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="#2E7D32"
+                       TextAlignment="Center"
+                       Margin="0,0,0,30"/>
+
+            <Button Content="Quản lý dịch vụ STIs"
+                    x:Name="btnMangeService"
+                    Width="300"
+                    Height="50"
+                    FontSize="16"
+                    Click="btnMangeService_Click"
+                    Margin="0 0 0 16"/>
+
+            <Button Content="Quản lý lịch xét nghiệm"
+                    x:Name="btnMangeStisBooking"
+                    Width="300"
+                    Height="50"
+                    FontSize="16"
+                    Click="btnMangeStisBooking_Click"
+                    Margin="0 0 0 16"/>
+
+            <Button Content="Quản lý lịch tư vấn"
+                    x:Name="btnMangeConsulBooking"
+                    Width="300"
+                    Height="50"
+                    FontSize="16" Click="btnMangeConsulBooking_Click"/>
+
+        </StackPanel>
     </Grid>
-    
 </Window>

@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DAL.Entities;
+using GenderHealthCareSystem.Dashboard;
 
 namespace GenderHealthCareSystem.StisBookingFunc
 {
     /// <summary>
     /// Interaction logic for ManageStisBooking.xaml
     /// </summary>
-    public partial class ManageStisBooking : UserControl
+    public partial class ManageStisBooking : Window
     {
         private readonly BLL.Service.StisBookingService bookingService;
         private readonly BLL.Service.StisResultService resultService;
@@ -135,6 +136,13 @@ namespace GenderHealthCareSystem.StisBookingFunc
             {
                 MessageBox.Show("Please select a booking to add result.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerDashboard managerDashboard = new ManagerDashboard();
+            managerDashboard.Show();
+            this.Close();
         }
     }
 }

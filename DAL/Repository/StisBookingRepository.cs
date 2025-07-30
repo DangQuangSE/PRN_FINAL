@@ -66,6 +66,7 @@ namespace DAL.Repository
                 .Include(b => b.Customer)
                 .Include(b => b.Service)
                 .OrderByDescending(b => b.CreatedAt)
+                .Take(25)
                 .ToList();
         }
 

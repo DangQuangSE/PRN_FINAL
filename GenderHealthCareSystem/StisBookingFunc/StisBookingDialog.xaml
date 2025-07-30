@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="New Booking" Height="350" Width="400" 
         WindowStartupLocation="CenterOwner"
-        Background="#FFD0E8D0" FontFamily="Arial" FontSize="13">
+         FontFamily="Arial" FontSize="13">
     <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label x:Name="lbservice" Content="Service:" Width="120" VerticalAlignment="Center"/>

@@ -10,61 +10,53 @@
         Width="800"
         FontFamily="Arial"
         FontSize="13"
-        Background="#FFD0E8D0"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <Style TargetType="Label">
-            <Setter Property="FontFamily" Value="Tahoma"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="#FF2E7D32"/>
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Setter Property="Height" Value="16"/>
-            <Setter Property="Background" Value="#FFECF9EC"/>
-        </Style>
-
         <Style TargetType="Button">
             <Setter Property="Padding" Value="5"/>
-            <Setter Property="Background" Value="#FF388E3C"/>
+            <Setter Property="Background" Value="#0099CF"/>
             <Setter Property="Foreground" Value="White"/>
         </Style>
     </Window.Resources>
 
-    <StackPanel>
-        <DataGrid x:Name="dgStisBookingList" AutoGenerateColumns="False" CanUserAddRows="False" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Booking Id" Width="0.7*" Binding="{Binding BookingId}"/>
-                <DataGridTextColumn Header="Service Name" Width="1*" Binding="{Binding Service.ServiceName}"/>
-                <DataGridTextColumn Header="Price" Width="1*" Binding="{Binding Service.Price}"/>
-                <DataGridTextColumn Header="Booking Date" Width="1*" Binding="{Binding BookingDate}"/>
-                <DataGridTextColumn Header="Status" Width="1*" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Notes" Width="1*" Binding="{Binding Note}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+    <DockPanel>
 
+        <!-- Nút quay lại -->
+        <Button x:Name="btnBack" Content="← Quay lại" 
+                DockPanel.Dock="Top"
+                Margin="10"
+                HorizontalAlignment="Left" Click="btnBack_Click"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Button x:Name="btnAdd" Content="Add New Booking" Click="Add_Click"/>
-            <Button x:Name="btnEdit" Content="Change BookingDate" Click="btnEdit_Click"/>
-            <Button x:Name="btnDelete" Content="cancel Booking" Click="Delete_Click"/>
-            <Button x:Name="btnViewResult" Content="View Result" Click="btnViewResult_Click"/>
-        </StackPanel>
-        <Popup Placement="Center" x:Name="ppresult" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
-            <StackPanel Height="500" Width="450" Background="White" Margin="20" 
-                VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBox x:Name="tbresult" Width="400" Height="400"  TextWrapping="Wrap"
-                 AcceptsReturn="True"
-    AcceptsTab="True"
-    VerticalScrollBarVisibility="Auto"/>
-                <Button Content="Close" Click="btnClosePopup_Click" Margin="0,10,0,0"/>
+        <StackPanel>
+            <DataGrid x:Name="dgStisBookingList" AutoGenerateColumns="False" CanUserAddRows="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Booking Id" Width="0.7*" Binding="{Binding BookingId}"/>
+                    <DataGridTextColumn Header="Service Name" Width="1*" Binding="{Binding Service.ServiceName}"/>
+                    <DataGridTextColumn Header="Price" Width="1*" Binding="{Binding Service.Price}"/>
+                    <DataGridTextColumn Header="Booking Date" Width="1*" Binding="{Binding BookingDate}"/>
+                    <DataGridTextColumn Header="Status" Width="1*" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Notes" Width="1*" Binding="{Binding Note}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button x:Name="btnAdd" Content="Add New Booking" Click="Add_Click"/>
+                <Button x:Name="btnEdit" Content="Change BookingDate" Click="btnEdit_Click"/>
+                <Button x:Name="btnDelete" Content="Cancel Booking" Click="Delete_Click"/>
+                <Button x:Name="btnViewResult" Content="View Result" Click="btnViewResult_Click"/>
             </StackPanel>
-        </Popup>
 
-    </StackPanel>
+            <Popup Placement="Center" x:Name="ppresult" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
+                <StackPanel Height="500" Width="450" Background="White" Margin="20" 
+                            VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBox x:Name="tbresult" Width="400" Height="400" TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             AcceptsTab="True"
+                             VerticalScrollBarVisibility="Auto"/>
+                    <Button Content="Close" Click="btnClosePopup_Click" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Popup>
+        </StackPanel>
+    </DockPanel>
 </Window>
-
-
-
-

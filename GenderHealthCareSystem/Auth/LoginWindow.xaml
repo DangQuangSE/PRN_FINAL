@@ -26,14 +26,6 @@
                 <TextBlock Text="Mật khẩu" Margin="0,0,0,5" Foreground="#555"/>
                 <PasswordBox x:Name="txtPassword" Margin="0,0,0,10"/>
 
-                <!-- Forgot Password -->
-                <TextBlock HorizontalAlignment="Right" Margin="0,0,0,20">
-                     <Hyperlink Foreground="{StaticResource PrimaryColor}" TextDecorations="None"
-                                 >
-                         Quên mật khẩu?
-                     </Hyperlink>
-                </TextBlock>
-
                 <!-- Login Button -->
                 <Button x:Name="btnLogin" Content="Đăng nhập" Click="btnLogin_Click"
                         />

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DAL.Entities;
 using BLL.Service;
+using GenderHealthCareSystem.Dashboard;
 
 namespace GenderHealthCareSystem.ConsultantBookingFunc
 {
@@ -23,11 +24,12 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
     {
         private readonly ConsultationBookingService bookingService;
         private readonly UserService userService;
-        private int customerId = 1; // Default customer ID, should be from login session
-        
-        public ConsultantBookingWindow()
+        public int customerId { get; set; }
+
+        public ConsultantBookingWindow(int UserId)
         {
             InitializeComponent();
+            customerId = UserId;
             bookingService = new ConsultationBookingService();
             userService = new UserService();
             LoadBookings();
@@ -152,6 +154,14 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
             {
                 MessageBox.Show($"Error editing booking:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            var user = userService.GetUserByUserId(customerId);
+            CustomerDashboard customer = new CustomerDashboard(user);
+            customer.Show();
+            this.Close();
         }
     }
 }

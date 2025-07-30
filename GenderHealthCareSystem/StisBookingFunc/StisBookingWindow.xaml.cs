@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLL.Service;
 using DAL.Entities;
+using GenderHealthCareSystem.Dashboard;
 
 namespace GenderHealthCareSystem.StisBookingFunc
 {
@@ -22,6 +24,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
     {
         private readonly BLL.Service.StisBookingService bookingService;
         private readonly BLL.Service.StisServiceService serviceService;
+        private readonly UserService userService;
         public int CustomerId { get; set; }
         public StisBookingWindow( int id)
         {
@@ -29,6 +32,7 @@ namespace GenderHealthCareSystem.StisBookingFunc
             CustomerId = id;
             bookingService = new BLL.Service.StisBookingService();
             serviceService = new BLL.Service.StisServiceService();
+            userService = new UserService();
             LoadBookings();
         }
         private void LoadBookings()
@@ -137,6 +141,13 @@ namespace GenderHealthCareSystem.StisBookingFunc
         {
             ppresult.IsOpen = false; // Close the result popup
         }
-        
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            var user = userService.GetUserByUserId(CustomerId);
+            CustomerDashboard customer = new CustomerDashboard(user);
+            customer.Show();
+            this.Close();
+        }
     }
 }

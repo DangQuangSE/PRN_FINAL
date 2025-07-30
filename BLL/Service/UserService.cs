@@ -31,5 +31,10 @@ namespace BLL.Service
         {
             _rp.UpdateProfile(user);
         }
+
+        public User? GetUserByUserId (int id)
+        {
+            return _rp.GetUserByUserId(id);
+        }
     }
 }
