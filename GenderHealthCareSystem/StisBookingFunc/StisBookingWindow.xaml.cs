@@ -81,9 +81,33 @@ namespace GenderHealthCareSystem.StisBookingFunc
 
         }
 
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgStisBookingList.SelectedItem is StisBooking selectedBooking)
+            {
+                var dialog = new StisBookingDialog(true);
+                dialog.Owner = this;
+
+                // Optionally, set available services for the dialog
+                dialog.cbService.ItemsSource = serviceService.GetAllServices();
+                dialog.cbService.DisplayMemberPath = "ServiceName";
+                dialog.cbService.SelectedValuePath = "ServiceId";
+
+                if (dialog.ShowDialog() == true)
+                {
+                    var newBooking = selectedBooking;
+                    newBooking.BookingDate = dialog.BookingDate.Value + dialog.BookingTime.Value;
+
+                    bookingService.UpdateBooking(newBooking);
+                    LoadBookings();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a booking to edit.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+           
         }
     }
 }

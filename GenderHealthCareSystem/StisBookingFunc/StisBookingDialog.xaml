@@ -10,23 +10,38 @@
         Background="#FFD0E8D0" FontFamily="Arial" FontSize="13">
     <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal" Margin="0,5">
-            <Label Content="Service:" Width="120" VerticalAlignment="Center"/>
+            <Label x:Name="lbservice" Content="Service:" Width="120" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbService" Width="200" DisplayMemberPath="ServiceName" SelectedValuePath="ServiceId"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Booking Date:" Width="120" VerticalAlignment="Center"/>
             <DatePicker x:Name="dpBookingDate" Width="200"/>
         </StackPanel>
+
+
         <StackPanel Orientation="Horizontal" Margin="0,5">
-            <Label Content="Booking Time:" Width="120" VerticalAlignment="Center"/>
-            <TextBox x:Name="tbBookingTime" Width="200" />
+            <Label Content="Booking time:" Width="120" VerticalAlignment="Center"/>
+            <ComboBox x:Name="tbBookingTime" Width="200">
+                <ComboBoxItem Content="7:00"/>
+                <ComboBoxItem Content="8:00"/>
+                <ComboBoxItem Content="9:00"/>
+                <ComboBoxItem Content="10:00"/>
+                <ComboBoxItem Content="11:00"/>
+                <!-- Lunch break from 12:00 to 14:00 -->
+                <ComboBoxItem Content="14:00"/>
+                <ComboBoxItem Content="15:00"/>
+                <ComboBoxItem Content="16:00"/>
+                <ComboBoxItem Content="17:00"/>
+            </ComboBox>
         </StackPanel>
+
+
         <StackPanel Orientation="Horizontal" Margin="0,5">
-            <Label Content="Note:" Width="120" VerticalAlignment="Center"/>
+            <Label x:Name="lbnote" Content="Note:" Width="120" VerticalAlignment="Center"/>
             <TextBox x:Name="tbNote" Width="200"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
-            <Label Content="Payment Method:" Width="120" VerticalAlignment="Center"/>
+            <Label x:Name="lbpayment" Content="Payment Method:" Width="120" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbPaymentMethod" Width="200">
                 <ComboBoxItem Content="Credit_card"/>
                 <ComboBoxItem Content="Cash"/>

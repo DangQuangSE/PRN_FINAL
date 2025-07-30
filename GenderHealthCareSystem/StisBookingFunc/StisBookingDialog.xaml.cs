@@ -25,21 +25,53 @@ namespace GenderHealthCareSystem.StisBookingFunc
         {
             get
             {
-                if (TimeSpan.TryParse(tbBookingTime.Text, out var time))
-                    return time;
+                if (tbBookingTime.SelectedItem is ComboBoxItem selectedItem)
+                {
+                    string timeString = selectedItem.Content as string;
+                    if (TimeSpan.TryParse(timeString, out var time))
+                        return time;
+                }
                 return null;
             }
         }
+        bool IsEdit;
         public string Note => tbNote.Text;
         public string PaymentMethod => (cbPaymentMethod.SelectedItem as ComboBoxItem)?.Content?.ToString();
 
-        public StisBookingDialog()
+        public StisBookingDialog(bool isEdit = false)
         {
             InitializeComponent();
+            if (isEdit)
+            {
+                Title = "Edit STIs Booking";
+                cbPaymentMethod.Visibility = Visibility.Collapsed;
+                tbNote.Visibility = Visibility.Collapsed;
+                cbService.Visibility = Visibility.Collapsed;
+                lbnote.Visibility = Visibility.Collapsed;
+                lbpayment.Visibility = Visibility.Collapsed;
+                lbservice.Visibility = Visibility.Collapsed;
+                IsEdit = true;
+
+            }
+            else
+            {
+                Title = "Add STIs Booking";
+                IsEdit = false;
+            }
+
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
+            if (IsEdit)
+            {
+                if (BookingDate == null || BookingTime == null)
+                {
+                    MessageBox.Show("Please fill all required fields.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+            }
+            else
             if (ServiceId == 0 || BookingDate == null || BookingTime == null || string.IsNullOrWhiteSpace(PaymentMethod))
             {
                 MessageBox.Show("Please fill all required fields.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);

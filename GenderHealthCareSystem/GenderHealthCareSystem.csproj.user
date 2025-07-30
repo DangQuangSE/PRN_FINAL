@@ -8,6 +8,9 @@
     <Compile Update="Auth\SignUpWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="StisBookingFunc\ManageStisBooking.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="StisBookingFunc\StisBookingDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
