@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenderHealthCareSystem.StisBookingFunc"
         mc:Ignorable="d"
-        Title="StisBookingWindow" 
+        Title="Danh sách đặt lịch STIs" 
         Height="500"
         Width="800"
         FontFamily="Arial"
@@ -29,22 +29,22 @@
                 HorizontalAlignment="Left" Click="btnBack_Click"/>
 
         <StackPanel>
-            <DataGrid x:Name="dgStisBookingList" AutoGenerateColumns="False" CanUserAddRows="False" >
+            <DataGrid x:Name="dgStisBookingList" AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Booking Id" Width="0.7*" Binding="{Binding BookingId}"/>
-                    <DataGridTextColumn Header="Service Name" Width="1*" Binding="{Binding Service.ServiceName}"/>
-                    <DataGridTextColumn Header="Price" Width="1*" Binding="{Binding Service.Price}"/>
-                    <DataGridTextColumn Header="Booking Date" Width="1*" Binding="{Binding BookingDate}"/>
-                    <DataGridTextColumn Header="Status" Width="1*" Binding="{Binding Status}"/>
-                    <DataGridTextColumn Header="Notes" Width="1*" Binding="{Binding Note}"/>
+                    <DataGridTextColumn Header="Mã đặt lịch" Width="0.7*" Binding="{Binding BookingId}"/>
+                    <DataGridTextColumn Header="Tên dịch vụ" Width="1*" Binding="{Binding Service.ServiceName}"/>
+                    <DataGridTextColumn Header="Giá" Width="1*" Binding="{Binding Service.Price}"/>
+                    <DataGridTextColumn Header="Ngày đặt" Width="1*" Binding="{Binding BookingDate}"/>
+                    <DataGridTextColumn Header="Trạng thái" Width="1*" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Ghi chú" Width="1*" Binding="{Binding Note}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button x:Name="btnAdd" Content="Add New Booking" Click="Add_Click"/>
-                <Button x:Name="btnEdit" Content="Change BookingDate" Click="btnEdit_Click"/>
-                <Button x:Name="btnDelete" Content="Cancel Booking" Click="Delete_Click"/>
-                <Button x:Name="btnViewResult" Content="View Result" Click="btnViewResult_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnAdd" Content="Thêm lịch mới" Click="Add_Click"/>
+                <Button x:Name="btnEdit" Content="Đổi ngày hẹn" Click="btnEdit_Click"/>
+                <Button x:Name="btnDelete" Content="Hủy lịch" Click="Delete_Click"/>
+                <Button x:Name="btnViewResult" Content="Xem kết quả" Click="btnViewResult_Click"/>
             </StackPanel>
 
             <Popup Placement="Center" x:Name="ppresult" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
@@ -54,7 +54,7 @@
                              AcceptsReturn="True"
                              AcceptsTab="True"
                              VerticalScrollBarVisibility="Auto"/>
-                    <Button Content="Close" Click="btnClosePopup_Click" Margin="0,10,0,0"/>
+                    <Button Content="Đóng" Click="btnClosePopup_Click" Margin="0,10,0,0"/>
                 </StackPanel>
             </Popup>
         </StackPanel>

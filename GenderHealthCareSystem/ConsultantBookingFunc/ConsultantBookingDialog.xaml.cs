@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace GenderHealthCareSystem.ConsultantBookingFunc
 {
     /// <summary>
-    /// Interaction logic for ConsultantBookingDialog.xaml
+    /// Giao diện tạo/chỉnh sửa lịch hẹn tư vấn
     /// </summary>
     public partial class ConsultantBookingDialog : Window
     {
@@ -34,6 +34,7 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
                 return null;
             }
         }
+
         bool IsEdit;
         public string Note => tbNote.Text;
 
@@ -43,10 +44,10 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
         {
             InitializeComponent();
             bookingService = new BLL.Service.ConsultationBookingService();
-            
+
             if (isEdit)
             {
-                Title = "Edit Consultant Booking";
+                Title = "Chỉnh sửa lịch hẹn tư vấn";
                 cbConsultant.Visibility = Visibility.Collapsed;
                 tbNote.Visibility = Visibility.Collapsed;
                 lbNote.Visibility = Visibility.Collapsed;
@@ -55,34 +56,31 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
             }
             else
             {
-                Title = "Add Consultant Booking";
+                Title = "Tạo lịch hẹn tư vấn";
                 IsEdit = false;
             }
-            
-            // Set minimum date to today and maximum to 30 days from now
+
+            // Giới hạn ngày đặt hẹn: từ hôm nay đến 30 ngày sau
             dpBookingDate.DisplayDateStart = DateTime.Today;
             dpBookingDate.DisplayDateEnd = DateTime.Today.AddDays(30);
-            
-            // Set default date to tomorrow
-            dpBookingDate.SelectedDate = DateTime.Today.AddDays(1);
+            dpBookingDate.SelectedDate = DateTime.Today.AddDays(1); // Mặc định chọn ngày mai
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Enhanced validation
                 if (IsEdit)
                 {
                     if (BookingDate == null)
                     {
-                        MessageBox.Show("Please select a booking date.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Vui lòng chọn ngày hẹn.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
-                    
+
                     if (BookingTime == null)
                     {
-                        MessageBox.Show("Please select a booking time.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Vui lòng chọn giờ hẹn.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                 }
@@ -90,70 +88,64 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
                 {
                     if (ConsultantId == 0)
                     {
-                        MessageBox.Show("Please select a consultant.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
-                    }
-                    
-                    if (BookingDate == null)
-                    {
-                        MessageBox.Show("Please select a booking date.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
-                    }
-                    
-                    if (BookingTime == null)
-                    {
-                        MessageBox.Show("Please select a booking time.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Vui lòng chọn tư vấn viên.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
-                    // Additional validation for booking time
+                    if (BookingDate == null)
+                    {
+                        MessageBox.Show("Vui lòng chọn ngày hẹn.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    if (BookingTime == null)
+                    {
+                        MessageBox.Show("Vui lòng chọn giờ hẹn.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
                     DateTime fullBookingDateTime = BookingDate.Value + BookingTime.Value;
-                    
-                    // Check if booking is in the past
+
                     if (fullBookingDateTime <= DateTime.Now)
                     {
-                        MessageBox.Show("Cannot book in the past.", "Invalid Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Không thể đặt lịch ở thời điểm đã qua.", "Thời gian không hợp lệ", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
-                    
-                    // Check if booking is too soon (less than 30 minutes from now)
+
                     if (fullBookingDateTime <= DateTime.Now.AddMinutes(30))
                     {
-                        MessageBox.Show("Must book at least 30 minutes in advance.", "Invalid Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Vui lòng đặt lịch trước ít nhất 30 phút.", "Thời gian không hợp lệ", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
-                    
-                    // Check if booking is too far in the future (more than 30 days)
+
                     if (fullBookingDateTime >= DateTime.Now.AddDays(30))
                     {
-                        MessageBox.Show("Can only book within 30 days.", "Invalid Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Chỉ được đặt lịch trong vòng 30 ngày.", "Thời gian không hợp lệ", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
-                    
-                    // Check if consultant is available at this time
+
                     try
                     {
                         bool isAvailable = bookingService.IsConsultantAvailable(ConsultantId, fullBookingDateTime);
-                        
+
                         if (!isAvailable)
                         {
-                            MessageBox.Show("Consultant already has a booking at this time. Please choose another time.", "Time Conflict", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Tư vấn viên đã có lịch vào thời điểm này. Vui lòng chọn thời gian khác.", "Trùng lịch", MessageBoxButton.OK, MessageBoxImage.Warning);
                             return;
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error checking availability:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Lỗi khi kiểm tra lịch tư vấn:\n{ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
                 }
-                
-                // All validations passed
+
                 DialogResult = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error in validation:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi xác thực dữ liệu:\n{ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

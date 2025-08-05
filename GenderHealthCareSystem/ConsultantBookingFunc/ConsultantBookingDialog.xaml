@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenderHealthCareSystem.ConsultantBookingFunc"
         mc:Ignorable="d"
-        Title="New Consultant Booking" Height="500" Width="500" 
+        Title="Đặt lịch tư vấn viên" Height="500" Width="500" 
         WindowStartupLocation="CenterOwner"
         FontFamily="Arial" FontSize="13">
     <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Center">
@@ -14,12 +14,12 @@
                    HorizontalAlignment="Center" 
                    Margin="0,0,0,20"
                    Foreground="#0099CF"/>
-        
+
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label x:Name="lbConsultant" Content="Tư vấn viên: *" Width="120" VerticalAlignment="Center" Foreground="#0099CF"/>
             <ComboBox x:Name="cbConsultant" Width="250" DisplayMemberPath="FullName" SelectedValuePath="UserId"/>
         </StackPanel>
-        
+
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Ngày hẹn: *" Width="120" VerticalAlignment="Center" Foreground="#0099CF"/>
             <DatePicker x:Name="dpBookingDate" Width="250"/>
@@ -40,18 +40,18 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
-            <Label x:Name="lbNote" Content="Note:" Width="120" VerticalAlignment="Top" Foreground="#0099CF"/>
+            <Label x:Name="lbNote" Content="Ghi chú:" Width="120" VerticalAlignment="Top" Foreground="#0099CF"/>
             <TextBox x:Name="tbNote" Width="250" Height="60" TextWrapping="Wrap" AcceptsReturn="True" 
                      VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
-        
-        <TextBlock Text="* Required" 
+
+        <TextBlock Text="* Bắt buộc" 
                    FontStyle="Italic" 
                    Margin="0,10,0,0"
                    Foreground="Red"
                    HorizontalAlignment="Right"/>
 
-        <TextBlock Text="Ghi chú: Bạn chỉ có thể đặt lịch trong vòng 30 ngày và ít nhất trước 30 phút." 
+        <TextBlock Text="Lưu ý: Bạn chỉ có thể đặt lịch trong vòng 30 ngày và trước ít nhất 30 phút." 
                    FontStyle="Italic" 
                    Margin="0,5,0,0"
                    Foreground="#FF666666"
@@ -62,10 +62,10 @@
                    Margin="0,5,0,0"
                    Foreground="#0099CF"
                    TextWrapping="Wrap"/>
-        
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-            <Button Content="Book Now" Width="100" Margin="0,0,10,0" Click="Ok_Click"/>
-            <Button Content="Cancel" Width="90" Click="Cancel_Click"/>
+            <Button Content="Xác nhận" Width="100" Margin="0,0,10,0" Click="Ok_Click"/>
+            <Button Content="Hủy" Width="90" Click="Cancel_Click"/>
         </StackPanel>
     </StackPanel>
 </Window>

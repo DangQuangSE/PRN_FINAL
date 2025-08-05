@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenderHealthCareSystem.ConsultantBookingFunc"
         mc:Ignorable="d"
-        Title="Consultant Booking" 
+        Title="Danh sách lịch tư vấn" 
         Height="500"
         Width="900"
         FontFamily="Arial"
@@ -19,30 +19,35 @@
             <Setter Property="Foreground" Value="White"/>
         </Style>
     </Window.Resources>
+
     <DockPanel>
+        <!-- Nút quay lại -->
         <Button x:Name="btnBack" Content="← Quay lại" 
-        DockPanel.Dock="Top"
-        Margin="10"
-        HorizontalAlignment="Left" Click="btnBack_Click"/>
-    <StackPanel>
-        <DataGrid x:Name="dgConsultantBookingList" AutoGenerateColumns="False" CanUserAddRows="False" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Booking Id" Width="0.7*" Binding="{Binding BookingId}"/>
-                <DataGridTextColumn Header="Consultant Name" Width="1.2*" Binding="{Binding Consultant.FullName}"/>
-                <DataGridTextColumn Header="Booking Date" Width="1.2*" Binding="{Binding BookingDate}"/>
-                <DataGridTextColumn Header="Status" Width="1*" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Payment Status" Width="1*" Binding="{Binding PaymentStatus}"/>
-                <DataGridTextColumn Header="Meet Link" Width="1.5*" Binding="{Binding MeetLink}"/>
-                <DataGridTextColumn Header="Notes" Width="1.2*" Binding="{Binding Note}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                DockPanel.Dock="Top"
+                Margin="10"
+                HorizontalAlignment="Left"
+                Click="btnBack_Click"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Button x:Name="btnAdd" Content="Add New Booking" Click="Add_Click"/>
-            <Button x:Name="btnEdit" Content="Change BookingDate" Click="btnEdit_Click"/>
-            <Button x:Name="btnDelete" Content="Cancel Booking" Click="Delete_Click"/>
+        <StackPanel>
+            <!-- Bảng dữ liệu -->
+            <DataGrid x:Name="dgConsultantBookingList" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã lịch hẹn" Width="0.7*" Binding="{Binding BookingId}"/>
+                    <DataGridTextColumn Header="Tên tư vấn viên" Width="1.2*" Binding="{Binding Consultant.FullName}"/>
+                    <DataGridTextColumn Header="Ngày hẹn" Width="1.2*" Binding="{Binding BookingDate}"/>
+                    <DataGridTextColumn Header="Trạng thái" Width="1*" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Thanh toán" Width="1*" Binding="{Binding PaymentStatus}"/>
+                    <DataGridTextColumn Header="Liên kết họp" Width="1.5*" Binding="{Binding MeetLink}"/>
+                    <DataGridTextColumn Header="Ghi chú" Width="1.2*" Binding="{Binding Note}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Các nút thao tác -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button x:Name="btnAdd" Content="Tạo lịch hẹn mới" Click="Add_Click" Margin="5"/>
+                <Button x:Name="btnEdit" Content="Thay đổi ngày hẹn" Click="btnEdit_Click" Margin="5"/>
+                <Button x:Name="btnDelete" Content="Hủy lịch hẹn" Click="Delete_Click" Margin="5"/>
+            </StackPanel>
         </StackPanel>
-
-    </StackPanel>
     </DockPanel>
 </Window>

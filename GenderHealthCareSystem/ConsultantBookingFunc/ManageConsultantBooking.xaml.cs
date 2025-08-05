@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +17,19 @@ using GenderHealthCareSystem.Dashboard;
 namespace GenderHealthCareSystem.ConsultantBookingFunc
 {
     /// <summary>
-    /// Interaction logic for ManageConsultantBooking.xaml
+    /// Giao diện quản lý lịch hẹn tư vấn
     /// </summary>
     public partial class ManageConsultantBooking : Window
     {
         private readonly BLL.Service.ConsultationBookingService bookingService;
-        
+
         public ManageConsultantBooking()
         {
             InitializeComponent();
             bookingService = new BLL.Service.ConsultationBookingService();
             LoadBookings();
         }
-        
+
         private void LoadBookings()
         {
             try
@@ -38,7 +38,7 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"L?i khi t?i danh s�ch booking: {ex.Message}", "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi tải danh sách lịch hẹn: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -51,10 +51,10 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
                 {
                     var filteredBookings = bookingService.SearchBookings(customerName: searchText);
                     dgConsultantBookingList.ItemsSource = filteredBookings;
-                    
+
                     if (!filteredBookings.Any())
                     {
-                        MessageBox.Show("Kh�ng t�m th?y booking n�o ph� h?p.", "K?t qu? t�m ki?m", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Không tìm thấy lịch hẹn phù hợp.", "Kết quả tìm kiếm", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 else
@@ -64,7 +64,7 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"L?i khi t�m ki?m: {ex.Message}", "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi tìm kiếm: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -72,7 +72,7 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
         {
             if (dgConsultantBookingList.SelectedItem is ConsultationBooking selectedBooking)
             {
-                // Pre-select current status
+                // Chọn sẵn trạng thái hiện tại
                 foreach (ComboBoxItem item in cbBookingStatus.Items)
                 {
                     if (item.Content.ToString() == selectedBooking.Status)
@@ -81,8 +81,8 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
                         break;
                     }
                 }
-                
-                // Pre-select current payment status
+
+                // Chọn sẵn trạng thái thanh toán hiện tại
                 foreach (ComboBoxItem item in cbPaymentStatus.Items)
                 {
                     if (item.Content.ToString() == selectedBooking.PaymentStatus)
@@ -91,12 +91,12 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
                         break;
                     }
                 }
-                
+
                 ppStatus.IsOpen = true;
             }
             else
             {
-                MessageBox.Show("Vui l�ng ch?n m?t booking ?? c?p nh?t.", "Ch?a ch?n", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Vui lòng chọn một lịch hẹn để cập nhật.", "Chưa chọn lịch hẹn", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -108,24 +108,24 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
                 {
                     var dialog = new MeetLinkDialog(selectedBooking);
                     dialog.Owner = this;
-                    
+
                     if (dialog.ShowDialog() == true)
                     {
                         selectedBooking.MeetLink = dialog.MeetLink;
                         bookingService.UpdateBooking(selectedBooking);
                         LoadBookings();
-                        
-                        MessageBox.Show($"Meeting link has been set:\n{dialog.MeetLink}\n\nThe link has been saved to the system.", "Link Added", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        MessageBox.Show($"Đã tạo liên kết cuộc họp:\n{dialog.MeetLink}\n\nLiên kết đã được lưu vào hệ thống.", "Đã thêm liên kết", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please select a booking to add meeting link.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Vui lòng chọn một lịch hẹn để tạo liên kết cuộc họp.", "Chưa chọn lịch hẹn", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error adding meeting link: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi tạo liên kết cuộc họp: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -135,37 +135,37 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
             {
                 if (dgConsultantBookingList.SelectedItem is ConsultationBooking selectedBooking)
                 {
-                    if (cbBookingStatus.SelectedItem is ComboBoxItem selectedStatus && 
+                    if (cbBookingStatus.SelectedItem is ComboBoxItem selectedStatus &&
                         cbPaymentStatus.SelectedItem is ComboBoxItem selectedPaymentStatus)
                     {
                         string newStatus = selectedStatus.Content.ToString();
                         string newPaymentStatus = selectedPaymentStatus.Content.ToString();
-                        
+
                         bookingService.UpdateBookingStatus(selectedBooking.BookingId, newStatus);
                         selectedBooking.PaymentStatus = newPaymentStatus;
                         bookingService.UpdateBooking(selectedBooking);
-                        
+
                         LoadBookings();
                         ppStatus.IsOpen = false;
-                        MessageBox.Show("C?p nh?t tr?ng th�i booking th�nh c�ng.", "Th�nh c�ng", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Cập nhật trạng thái lịch hẹn thành công.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Vui l�ng ch?n c? tr?ng th�i booking v� tr?ng th�i thanh to�n.", "Thi?u th�ng tin", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Vui lòng chọn cả trạng thái lịch hẹn và trạng thái thanh toán.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Vui l�ng ch?n m?t booking ?? c?p nh?t.", "Ch?a ch?n", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Vui lòng chọn một lịch hẹn để cập nhật.", "Chưa chọn lịch hẹn", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "L?i validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(ex.Message, "Lỗi xác thực", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"L?i khi c?p nh?t tr?ng th�i: {ex.Message}", "L?i", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi cập nhật trạng thái: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

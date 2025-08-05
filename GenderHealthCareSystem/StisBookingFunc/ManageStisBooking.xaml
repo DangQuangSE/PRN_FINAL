@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenderHealthCareSystem.StisBookingFunc"
         mc:Ignorable="d"
-        Title="Manage STIs Booking"
+        Title="Quản lý đặt lịch xét nghiệm STI"
         Height="800"
         Width="1000"
         WindowStartupLocation="CenterScreen">
@@ -27,32 +27,32 @@
                   VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Booking Id" Width="0.7*" Binding="{Binding BookingId}"/>
-                <DataGridTextColumn Header="Customer Name" Width="0.7*" Binding="{Binding Customer.FullName}"/>
-                <DataGridTextColumn Header="Service Name" Width="1*" Binding="{Binding Service.ServiceName}"/>
-                <DataGridTextColumn Header="Price" Width="1*" Binding="{Binding Service.Price}"/>
-                <DataGridTextColumn Header="Booking Date" Width="1*" Binding="{Binding BookingDate}"/>
-                <DataGridTextColumn Header="Status" Width="1*" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Notes" Width="1*" Binding="{Binding Note}"/>
+                    <DataGridTextColumn Header="Mã đặt lịch" Width="0.7*" Binding="{Binding BookingId}"/>
+                    <DataGridTextColumn Header="Tên khách hàng" Width="0.7*" Binding="{Binding Customer.FullName}"/>
+                    <DataGridTextColumn Header="Dịch vụ" Width="1*" Binding="{Binding Service.ServiceName}"/>
+                    <DataGridTextColumn Header="Giá" Width="1*" Binding="{Binding Service.Price}"/>
+                    <DataGridTextColumn Header="Ngày đặt lịch" Width="1*" Binding="{Binding BookingDate}"/>
+                    <DataGridTextColumn Header="Trạng thái" Width="1*" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Ghi chú" Width="1*" Binding="{Binding Note}"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <!-- Thanh tìm kiếm -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
             <TextBox x:Name="txtSearch" Width="500" Margin="0,0,10,0"/>
-            <Button x:Name="SearchBtn" Content="Search" />
+                <Button x:Name="SearchBtn" Content="Tìm kiếm" />
         </StackPanel>
 
         <!-- Nút chức năng -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-            <Button x:Name="btnstatus" Content="Update Status" Click="btnstatus_Click" Margin="5"/>
-            <Button x:Name="btnAddResult" Content="Add Result" Click="btnAddResult_Click" Margin="5"/>
+                <Button x:Name="btnstatus" Content="Cập nhật trạng thái" Click="btnstatus_Click" Margin="5"/>
+                <Button x:Name="btnAddResult" Content="Thêm kết quả" Click="btnAddResult_Click" Margin="5"/>
         </StackPanel>
 
         <!-- Popup cập nhật trạng thái -->
         <Popup Placement="Center" IsOpen="False" x:Name="ppStatus" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
             <StackPanel Orientation="Vertical" Margin="1" Background="White" Width="300" Height="200">
-                <Label Content="Update Booking Status" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                    <Label Content="Cập nhật trạng thái đặt lịch" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
                 <ComboBox x:Name="cbBookingStatus" Width="200">
                     <ComboBoxItem Content="PENDING"/>
                     <ComboBoxItem Content="FAILED_PAYMENT"/>
@@ -62,18 +62,18 @@
                     <ComboBoxItem Content="NO_SHOW"/>
                     <ComboBoxItem Content="DENIED"/>
                 </ComboBox>
-                <Button x:Name="btnUpdateStatus" Content="Update Status" Click="btnUpdateStatus_Click" Margin="0,10,0,0"/>
-                <Button x:Name="btnClosePopup" Content="Close" Click="btnClosePopup_Click"/>
+                    <Button x:Name="btnUpdateStatus" Content="Cập nhật" Click="btnUpdateStatus_Click" Margin="0,10,0,0"/>
+                <Button x:Name="btnClosePopup" Content="Đóng" Click="btnClosePopup_Click"/>
             </StackPanel>
         </Popup>
 
         <!-- Popup nhập kết quả -->
         <Popup Placement="Center" IsOpen="False" x:Name="ppresult" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
             <StackPanel Orientation="Vertical" Margin="1" Background="White" Width="600" Height="600">
-                <Label Content="Add Result" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                    <Label Content="Nhập kết quả xét nghiệm" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
                 <TextBox x:Name="txtResult" Width="400" Height="400" Margin="0,0,0,10" TextWrapping="Wrap"
                          AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
-                <Button x:Name="btnaddresult" Content="Add Result" Click="btnaddresult_Click"/>
+                    <Button x:Name="btnaddresult" Content="Thêm kết quả" Click="btnaddresult_Click"/>
                 <Button Content="Close" Click="btnClosePopup_Click" Margin="0,10,0,0"/>
             </StackPanel>
         </Popup>

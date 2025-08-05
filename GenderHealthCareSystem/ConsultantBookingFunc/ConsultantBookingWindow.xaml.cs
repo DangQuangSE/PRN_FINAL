@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ using GenderHealthCareSystem.Dashboard;
 namespace GenderHealthCareSystem.ConsultantBookingFunc
 {
     /// <summary>
-    /// Interaction logic for ConsultantBookingWindow.xaml
+    /// Giao diện quản lý lịch hẹn của khách hàng
     /// </summary>
     public partial class ConsultantBookingWindow : Window
     {
@@ -34,7 +34,7 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
             userService = new UserService();
             LoadBookings();
         }
-        
+
         private void LoadBookings()
         {
             try
@@ -44,10 +44,10 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading bookings:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi tải lịch hẹn:\n{ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        
+
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -55,7 +55,7 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
                 var consultants = bookingService.GetAllConsultants();
                 if (consultants == null || !consultants.Any())
                 {
-                    MessageBox.Show("No consultants found. Please ensure there are consultants in the system.", "No Consultants", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Không tìm thấy chuyên gia tư vấn. Vui lòng kiểm tra lại hệ thống.", "Không có tư vấn viên", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -73,7 +73,7 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
                         BookingDate = dialog.BookingDate.Value + dialog.BookingTime.Value,
                         CustomerId = customerId,
                         Note = dialog.Note ?? "",
-                        MeetLink = null, // Will be set by consultant later
+                        MeetLink = null, // Tư vấn viên sẽ cung cấp sau
                         Status = "Pending",
                         PaymentStatus = "Unpaid",
                         CreatedAt = DateTime.Now
@@ -81,12 +81,12 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
 
                     bookingService.AddBooking(newBooking);
                     LoadBookings();
-                    MessageBox.Show("Booking created successfully!\n\nThe consultant will provide the meeting link after confirmation.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Tạo lịch hẹn thành công!\n\nTư vấn viên sẽ cung cấp liên kết cuộc họp sau khi xác nhận.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error creating booking:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi tạo lịch hẹn:\n{ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -96,22 +96,22 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
             {
                 if (dgConsultantBookingList.SelectedItem is ConsultationBooking selectedBooking)
                 {
-                    var result = MessageBox.Show("Are you sure you want to cancel this booking?", "Confirm Cancel", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    var result = MessageBox.Show("Bạn có chắc chắn muốn hủy lịch hẹn này không?", "Xác nhận hủy", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
-                        bookingService.CancelBooking(selectedBooking.BookingId, customerId, "Cancelled by customer");
+                        bookingService.CancelBooking(selectedBooking.BookingId, customerId, "Khách hàng hủy");
                         LoadBookings();
-                        MessageBox.Show("Booking cancelled successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Hủy lịch hẹn thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please select a booking to cancel.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Vui lòng chọn một lịch hẹn để hủy.", "Chưa chọn lịch hẹn", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error cancelling booking:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi hủy lịch hẹn:\n{ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -140,19 +140,22 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
 
                     if (dialog.ShowDialog() == true)
                     {
-                        bookingService.RescheduleBooking(selectedBooking.BookingId, dialog.BookingDate.Value + dialog.BookingTime.Value, customerId);
+                        bookingService.RescheduleBooking(
+                            selectedBooking.BookingId,
+                            dialog.BookingDate.Value + dialog.BookingTime.Value,
+                            customerId);
                         LoadBookings();
-                        MessageBox.Show("Booking rescheduled successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Đổi lịch hẹn thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please select a booking to edit.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Vui lòng chọn một lịch hẹn để chỉnh sửa.", "Chưa chọn lịch hẹn", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error editing booking:\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi khi chỉnh sửa lịch hẹn:\n{ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

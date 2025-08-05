@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,18 +62,19 @@ namespace GenderHealthCareSystem.ConsultantBookingFunc
         {
             if (string.IsNullOrWhiteSpace(tbMeetLink.Text))
             {
-                MessageBox.Show("Please enter a meeting link.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lòng nhập liên kết cuộc họp.", "Thiếu thông tin", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (!Uri.TryCreate(tbMeetLink.Text, UriKind.Absolute, out _))
             {
-                MessageBox.Show("Please enter a valid URL.", "Invalid Link", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vui lòng nhập một URL hợp lệ.", "Liên kết không hợp lệ", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             DialogResult = true;
         }
+
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
